@@ -97,6 +97,11 @@ a {
   letter-spacing: 0.03em;
 }
 
+.brand-logo {
+  border-radius: 8px;
+  box-shadow: 0 0 16px #16e8bc55;
+}
+
 .brand-dot {
   width: 0.62rem;
   height: 0.62rem;
@@ -155,6 +160,17 @@ a {
 .footer-muted {
   margin-top: 0.35rem;
   font-size: 0.95rem;
+}
+
+.footer-brand-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+}
+
+.footer-logo {
+  border-radius: 4px;
 }
 
 .footer-links {

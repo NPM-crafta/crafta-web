@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Sora, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { craftaAccounts, craftaKeywords } from "../lib/site-data";
-import { MagicCursorAura } from "../components/magic-cursor-aura";
+import SplashCursor from "../components/SplashCursor";
 
 const sora = Sora({
   variable: "--font-display",
@@ -37,6 +38,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
   verification: {
     google: "wNY-7XNIVGCXrq8RVnBV36yCa50PGvwLlI5rneDsbzI",
   },
@@ -50,11 +56,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sora.variable} ${spaceGrotesk.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <MagicCursorAura />
+        <SplashCursor
+          SPLAT_RADIUS={0.16}
+          SPLAT_FORCE={5400}
+          DENSITY_DISSIPATION={3.8}
+          VELOCITY_DISSIPATION={2.1}
+          COLOR_UPDATE_SPEED={8}
+          BACK_COLOR={{ r: 0.03, g: 0.09, b: 0.16 }}
+          TRANSPARENT
+        />
         <header className="site-header">
           <div className="shell nav-shell">
             <Link href="/" className="brand-pill">
-              <span className="brand-dot" />
+              <Image src="/logo.png" alt="Crafta logo" width={28} height={28} className="brand-logo" priority />
               <span>Crafta</span>
             </Link>
             <nav className="nav-links" aria-label="Primary">
@@ -74,7 +88,10 @@ export default function RootLayout({
         <footer className="site-footer">
           <div className="shell footer-shell">
             <div>
-              <p>Crafta ecosystem for real-world backend teams.</p>
+              <p className="footer-brand-line">
+                <Image src="/logo.png" alt="Crafta logo" width={18} height={18} className="footer-logo" />
+                <span>Crafta ecosystem for real-world backend teams.</span>
+              </p>
               <p className="footer-muted">Build less boilerplate. Ship more product.</p>
             </div>
             <div className="footer-links">
