@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ElectricBorder from "../../components/ElectricBorder";
 
 export const metadata: Metadata = {
   title: "Guides",
@@ -46,14 +47,23 @@ export default function GuidesPage() {
 
       <section className="package-grid">
         {guideCards.map((card, idx) => (
-          <article key={card.title} className={`package-card reveal-up-delay-${Math.min(idx + 1, 3)}`}>
-            <h2>{card.title}</h2>
-            <ul>
-              {card.points.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          </article>
+          <ElectricBorder
+            key={card.title}
+            color="#7df9ff"
+            speed={1}
+            chaos={0.1}
+            borderRadius={18}
+            className={`guide-electric-wrap reveal-up-delay-${Math.min(idx + 1, 3)}`}
+          >
+            <article className="package-card package-card-borderless guide-card-borderless">
+              <h2>{card.title}</h2>
+              <ul>
+                {card.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </article>
+          </ElectricBorder>
         ))}
       </section>
     </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ScrollStack, { ScrollStackItem } from "../../components/ScrollStack";
 
 export const metadata: Metadata = {
   title: "Showcase",
@@ -47,6 +48,27 @@ export default function ShowcasePage() {
             <p>{item.details}</p>
           </article>
         ))}
+      </section>
+
+      <section className="stack-section reveal-up" style={{ marginTop: "1rem" }}>
+        <h3>Stacked Delivery Flow</h3>
+        <p className="stack-intro">From setup to launch, each layer snaps into place.</p>
+        <div className="stack-shell showcase-stack-shell">
+          <ScrollStack itemDistance={72} itemScale={0.03} itemStackDistance={18} stackPosition="22%" scaleEndPosition="10%" baseScale={0.88}>
+            <ScrollStackItem itemClassName="stack-card-theme">
+              <h2>1. Install Fast</h2>
+              <p>Bootstrap core packages quickly and keep your own architecture in control.</p>
+            </ScrollStackItem>
+            <ScrollStackItem itemClassName="stack-card-theme">
+              <h2>2. Compose Auth</h2>
+              <p>Layer secure authentication and role controls with minimal boilerplate.</p>
+            </ScrollStackItem>
+            <ScrollStackItem itemClassName="stack-card-theme">
+              <h2>3. Ship Confidently</h2>
+              <p>Move to production with predictable config, docs, and maintainable modules.</p>
+            </ScrollStackItem>
+          </ScrollStack>
+        </div>
       </section>
     </div>
   );

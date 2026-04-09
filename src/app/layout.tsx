@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Sora, Space_Grotesk } from "next/font/google";
+import { Sora, Space_Grotesk, Geist } from "next/font/google";
 import "./globals.css";
 import { craftaAccounts, craftaKeywords } from "../lib/site-data";
 import SplashCursor from "../components/SplashCursor";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const sora = Sora({
   variable: "--font-display",
@@ -54,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sora.variable} ${spaceGrotesk.variable} h-full antialiased`}>
+    <html lang="en" className={cn("h-full", "antialiased", sora.variable, spaceGrotesk.variable, "font-sans", geist.variable)}>
       <body className="min-h-full flex flex-col">
         <SplashCursor
           SPLAT_RADIUS={0.16}

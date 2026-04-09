@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { craftaAccounts, craftaPackages } from "../lib/site-data";
+import RotatingText from "../components/RotatingText";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -29,6 +30,21 @@ export default function HomePage() {
           <br />
           Multiple backend superpowers.
         </h1>
+        <p className="hero-rotating-line">
+          Built for{" "}
+          <RotatingText
+            texts={["secure auth", "modular APIs", "production teams", "faster launches"]}
+            mainClassName="hero-rotating"
+            staggerFrom="last"
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-120%" }}
+            staggerDuration={0.025}
+            splitLevelClassName="overflow-hidden"
+            transition={{ type: "spring", damping: 30, stiffness: 400 }}
+            rotationInterval={2200}
+          />
+        </p>
         <p>
           Crafta helps developers launch production-ready backend systems with
           modular packages like crafta core and @dax-crafta/auth, while keeping
