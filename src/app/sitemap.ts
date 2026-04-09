@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { craftaPackages } from "../lib/site-data";
 
-const base = "https://crafta.dev";
+const base = "https://crafta.netlify.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
