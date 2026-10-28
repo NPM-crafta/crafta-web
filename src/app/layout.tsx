@@ -5,9 +5,10 @@ import { Sora, Space_Grotesk, Geist } from "next/font/google";
 import "./globals.css";
 import { craftaAccounts, craftaKeywords } from "../lib/site-data";
 import SplashCursor from "../components/SplashCursor";
+import { SearchModal } from "../components/SearchModal";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const sora = Sora({
   variable: "--font-display",
@@ -24,19 +25,34 @@ const baseUrl = "https://crafta.dev";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Crafta | Modular Backend Ecosystem",
+    default: "@dax-crafta/auth | Enterprise Node.js Authentication Library",
     template: "%s | Crafta",
   },
   description:
-    "Crafta ecosystem website for backend modules including crafta core and @dax-crafta/auth. Explore packages, docs, and developer resources.",
+    "Production-grade, security-first authentication library for Node.js, Express, and Crafta. Features JWT rotation, RBAC, 2FA, password policy, audit logging, and 19 machine-readable error codes.",
   keywords: craftaKeywords,
   openGraph: {
-    title: "Crafta Ecosystem",
+    title: "@dax-crafta/auth - Enterprise Authentication for Node.js",
     description:
-      "Build backend products faster with modular Crafta packages and production-ready docs.",
+      "Security-first Node.js authentication module with JWT rotation, 2FA, RBAC, session management, and standardized AUTH_* error codes.",
     url: baseUrl,
-    siteName: "Crafta",
+    siteName: "Crafta Framework & Auth",
     type: "website",
+    images: [
+      {
+        url: `${baseUrl}/logo.png`,
+        width: 1200,
+        height: 630,
+        alt: "Crafta Auth Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "@dax-crafta/auth Documentation",
+    description:
+      "Enterprise authentication for Node.js with JWT rotation, 2FA, RBAC, and standardized error codes.",
+    images: [`${baseUrl}/logo.png`],
   },
   alternates: {
     canonical: "/",
@@ -51,6 +67,20 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "@dax-crafta/auth",
+  "codeRepository": "https://github.com/daxp472/crafta",
+  "programmingLanguage": ["JavaScript", "TypeScript"],
+  "runtimePlatform": "Node.js",
+  "author": {
+    "@type": "Person",
+    "name": "Dax Patel"
+  },
+  "description": "Enterprise security authentication library for Node.js featuring JWT token rotation, RBAC, 2FA TOTP, session management, and standardized AUTH_* error codes."
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -58,6 +88,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn("h-full", "antialiased", sora.variable, spaceGrotesk.variable, "font-sans", geist.variable)}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <SplashCursor
           SPLAT_RADIUS={0.16}
@@ -83,6 +119,9 @@ export default function RootLayout({
               <Link href="/ecosystem">Ecosystem</Link>
               <Link href="/contact">Contact</Link>
             </nav>
+            <div className="flex items-center gap-2">
+              <SearchModal />
+            </div>
           </div>
         </header>
 
