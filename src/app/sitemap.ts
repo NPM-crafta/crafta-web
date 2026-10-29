@@ -1,11 +1,9 @@
 import type { MetadataRoute } from "next";
 import { craftaPackages } from "../lib/site-data";
+import { AUTH_DOC_SECTIONS } from "@/lib/doc-sections";
 import { AUTH_ERROR_CODES, API_REFERENCE_ITEMS, AUTH_FLOW_DIAGRAMS } from "../lib/auth-docs-data";
 
 const base = "https://crafta.dev";
-
-// Anchor fragments are added to sitemap URLs to surface key doc sections for crawlers
-const authAnchors = ["#quick-start", "#configuration", "#security-flows", "#api-reference", "#error-reference", "#production-checklist"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -34,42 +32,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
-    },
-    {
-      url: `${base}/docs/crafta-auth#quick-start`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.85,
-    },
-    {
-      url: `${base}/docs/crafta-auth#configuration`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.85,
-    },
-    {
-      url: `${base}/docs/crafta-auth#security-flows`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${base}/docs/crafta-auth#api-reference`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${base}/docs/crafta-auth#error-reference`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${base}/docs/crafta-auth#production-checklist`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.85,
     },
     {
       url: `${base}/guides`,
@@ -113,12 +75,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     ];
     if (pkg.slug === "crafta-auth") {
-      authAnchors.forEach((anchor) => {
+      AUTH_DOC_SECTIONS.forEach((sec) => {
         routes.push({
-          url: `${base}/docs/crafta-auth${anchor}`,
+          url: `${base}/docs/crafta-auth/${sec.id}`,
           lastModified: now,
           changeFrequency: "weekly",
-          priority: 0.8,
+          priority: 0.85,
         });
       });
     }
